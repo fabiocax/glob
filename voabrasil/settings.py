@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'voabrasil.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'blog/static/db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'blog/static/imagens/db.sqlite3'),
     }
 }
 
