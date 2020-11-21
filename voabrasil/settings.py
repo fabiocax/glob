@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'voabrasil.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'blog/static/db.sqlite3'),
     }
 }
 
@@ -131,5 +131,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/static/imagens/')
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/fabio/Projetos/blog/static/'
+STATIC_ROOT = 'blog/static/'
 
