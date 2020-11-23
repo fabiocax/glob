@@ -9,7 +9,9 @@
         <p class="card-text ">{{ object.content | safe }}</p>
       </div>
     </div>
-    {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+          {% for side in sidebar %}
+            {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+        {% endfor %}
   </div>
 </div>
 

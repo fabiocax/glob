@@ -10,10 +10,10 @@
 <!-- Sidebar Widgets Column -->
 <div class="col-md-4 float-right ">
 <div class="card my-4">
-        <h5 class="card-header">CALENDÁRIO EVENTOS</h5>
+        <h5 class="card-header">{{ side.title }}</h5>
     <div class="card-body">
-        <p class="card-text"> Dia 16, campeonato nacional de F5J!</p>
-        <a href="https://planabrasil.com.br"
+        <p class="card-text"> {{ side.content |safe}}</p>
+        <a href="/{{ side.slug }}"
            class="btn btn-danger">Completo!</a>
     </div>
 </div>
