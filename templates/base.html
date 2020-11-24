@@ -9,6 +9,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="{% static "blog/css/bootstrap.min.css" %}" />
         <script src="{% static "blog/js/jquery-3.5.1.min.js" %}"></script>
+        <script> //Constrói a URL depois que o DOM estiver pronto
+document.addEventListener("DOMContentLoaded", function() {
+    //conteúdo que será compartilhado: Título da página + URL
+    var conteudo = encodeURIComponent(document.title + " " + window.location.href);
+    //altera a URL do botão
+    document.getElementById("whatsapp-share-btt").href = "https://api.whatsapp.com/send?text=" + conteudo;
+}, false);</script>
     </head>
 
     <body>
