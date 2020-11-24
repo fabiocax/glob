@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,Image,Comment
+from .models import Post,Image,Comment,File
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -25,6 +25,13 @@ class ImagemAdmin(admin.ModelAdmin):
 admin.site.register(Image, ImagemAdmin)
 
 
+class FileAdmin(admin.ModelAdmin):
+    #list_display = ('title', 'slug', 'status','created_on')
+    #list_filter = ("status",)
+    search_fields = ['title', 'content']
+    prepopulated_fields = {'slug': ('title',)}
+  
+admin.site.register(File, FileAdmin)
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
