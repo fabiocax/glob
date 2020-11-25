@@ -22,6 +22,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.PostList.as_view(), name='home'),
+    path('search/', views.PostSearch.as_view(), name='home'),
+
     path('summernote/', include('django_summernote.urls')),
     path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     

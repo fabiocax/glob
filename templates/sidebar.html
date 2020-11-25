@@ -8,7 +8,9 @@
 </style>
 
 <!-- Sidebar Widgets Column -->
-<div class="col-md-4 float-right ">
+<div class="col-md-4 float-right">
+
+{% for side in sidebar %}
 <div class="card my-4">
         <h5 class="card-header">{{ side.title }}</h5>
     <div class="card-body">
@@ -18,7 +20,7 @@
     </div>
 </div>
 
-
+{% endfor %}
 
 
 </div>

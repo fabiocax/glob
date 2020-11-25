@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Menu(models.Model):
+    name = models.CharField(max_length=80)
+    active = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
+
 STATUS = (
     (0,"Draft"),
     (1,"Publish")
@@ -11,7 +17,8 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     resume = models.CharField(max_length=200, unique=False,default='')
-    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='blog_posts')
+    menu = models.ForeignKey(Menu,on_delete=models.CASCADE,blank=True,null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,related_name='blog_posts')
     updated_on = models.DateTimeField(auto_now= True)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -37,7 +44,7 @@ class Image(models.Model):
 class File(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=False,default='')
-    image = models.FileField(upload_to='images')
+    file = models.FileField(upload_to='images')
 
     def __str__(self):
         return self.title
@@ -57,3 +64,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
+

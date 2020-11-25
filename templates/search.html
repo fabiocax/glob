@@ -36,8 +36,25 @@
 <div class="container">
     <div class="row">
         <!-- Blog Entries Column -->
+
+
+
         <div class="col-md-8 mt-3 left">
-            {% for post in post_list %}
+
+
+        <div class="card mb-4" >
+            <div class="card-body">
+                <form class="form-inline mt-2 mt-md-0" action="/search" >
+                  <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2" name="search">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" value="Submit" type="submit" id="button-addon2">Pesquisar</button>
+                  </div>
+              </form>
+            </div>
+        </div>
+
+
+            {% for post in pesquisa %}
             <div class="card mb-4">
                 <div class="card-body">
                     <h4 class="card-title">{{ post.title }}</h4>
@@ -59,10 +76,10 @@
   <nav aria-label="Page navigation conatiner"></nav>
   <ul class="pagination justify-content-center">
     {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+    <li><a href="&page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
     {% endif %}
     {% if page_obj.has_next %}
-    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+    <li><a href="&page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
     {% endif %}
   </ul>

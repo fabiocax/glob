@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,Image,Comment,File
+from .models import Post,Image,Comment,File,Menu
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -7,7 +7,7 @@ from django_summernote.admin import SummernoteModelAdmin
 
 
 class PostAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'slug', 'status','sidebar','detach','created_on')
+    list_display = ('title', 'slug', 'status','menu','sidebar','detach','created_on')
     list_filter = ("status",)
     search_fields = ['title', 'content']
     summernote_fields = ('content',)
@@ -42,3 +42,12 @@ class CommentAdmin(admin.ModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
+
+
+class MenuAdmin(admin.ModelAdmin):
+    #list_display = ('title', 'slug', 'status','created_on')
+    #list_filter = ("status",)
+    search_fields = ['name', ]
+    #prepopulated_fields = {'slug': ('title',)}
+  
+admin.site.register(Menu, MenuAdmin)
