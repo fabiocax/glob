@@ -15,7 +15,7 @@ class PostList(generic.ListView):
 		context = super().get_context_data(**kwargs)
 		context['dados'] = Post.objects.filter(detach=True,status=1,footer=False).order_by('-created_on')
 		context['menu'] = Menu.objects.filter(active=True)
-		context['submenu'] = Post.objects.filter(status=1).order_by('-created_on')
+		context['submenu'] = Post.objects.filter(status__gt=0).order_by('-created_on')
 		context['sidebar'] = Post.objects.filter(sidebar=True,status=1,footer=False).order_by('-created_on')
 		context['footer'] = Post.objects.get(footer=True,status=1).content
 		context['logo'] = Image.objects.get(slug='logo').image
@@ -28,7 +28,7 @@ class PostDetail(generic.DetailView):
 		context = super().get_context_data(**kwargs)
 		context['dados'] = Post.objects.filter(detach=True,status=1,footer=False).order_by('-created_on')
 		context['menu'] = Menu.objects.filter(active=True)
-		context['submenu'] = Post.objects.filter(status=1).order_by('-created_on')
+		context['submenu'] = Post.objects.filter(status__gt=0).order_by('-created_on')
 		context['sidebar'] = Post.objects.filter(sidebar=True,status=1,footer=False).order_by('-created_on')
 		context['footer'] = Post.objects.get(footer=True,status=1).content
 		context['logo'] = Image.objects.get(slug='logo').image
@@ -52,6 +52,8 @@ class PostSearch(generic.ListView):
 		
 		context['dados'] = Post.objects.filter(detach=True,status=1,footer=False).order_by('-created_on')
 		context['sidebar'] = Post.objects.filter(sidebar=True,status=1,footer=False).order_by('-created_on')
+		context['menu'] = Menu.objects.filter(active=True)
+		context['submenu'] = Post.objects.filter(status__gt=0).order_by('-created_on')
 		context['footer'] = Post.objects.get(footer=True,status=1).content
 		context['logo'] = Image.objects.get(slug='logo').image
 		return context

@@ -10,7 +10,8 @@ class Menu(models.Model):
 
 STATUS = (
     (0,"Draft"),
-    (1,"Publish")
+    (1,"Publish"),
+    (2,"Internal")
 )
 
 class Post(models.Model):
