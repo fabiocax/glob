@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models import signals
+from django.db.models.signals import post_save,post_delete
+import funcoes
+from bs4 import BeautifulSoup
 
 class Menu(models.Model):
     name = models.CharField(max_length=80)
@@ -65,4 +68,21 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
+
+
+def Comment_save(signal, instance, sender, **kwargs):
+
+    post=''.join(BeautifulSoup(Post.objects.get(title=instance.post).content, "html.parser").stripped_strings)
+
+    if funcoes.similarity(instance.body,post) > 0.0 :
+        instance.active=True
+    else:
+        instance.active=False
+
+
+
+    
+
+
+signals.pre_save.connect(Comment_save, sender=Comment)
 
