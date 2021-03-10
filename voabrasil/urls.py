@@ -19,12 +19,23 @@ from blog import views
 from django.conf.urls.static import static
 from django.urls import include
 from django.conf import settings
+
+
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.PostList.as_view(), name='home'),
     path('search/', views.PostSearch.as_view(), name='home'),
 
+    path('account/', include('django.contrib.auth.urls')),
+    
     path('summernote/', include('django_summernote.urls')),
-    path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
+    #path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
+    path('<slug:slug>/', views.post_detail, name='post_detail'),
+    
+
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
